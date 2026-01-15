@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyeux Anniversaire Queen Fatima ❤️</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Import de polices modernes */
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;700&family=Great+Vibes&family=Playfair+Display:wght@900&family=Alex+Brush&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            overflow: auto; /* Permet le scroll si nécessaire */
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Le background Matrix (Canvas) amélioré */
+        #matrixCanvas {
+            display: block;
+            position: fixed; /* Changé à fixed pour rester en arrière-plan */
+            top: 0;
+            left: 0;
+            z-index: 1;
+            opacity: 0.7;
+        }
+
+        /* Conteneur principal - REDUIT */
+        .container {
+            position: relative;
+            z-index: 2;
+            width: 90%;
+            max-width: 800px; /* Réduit de 1000px à 800px */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px; /* Réduit de 40px à 20px */
+            padding: 20px 0; /* Ajout de padding */
+        }
+
+        /* Carte principale - REDUITE */
+        .card {
+            background: rgba(10, 10, 20, 0.85);
+            padding: 40px 30px; /* Réduit de 60px 40px à 40px 30px */
+            border-radius: 20px; /* Réduit de 25px */
+            border: 2px solid rgba(255, 20, 147, 0.7);
+            box-shadow: 
+                0 0 25px rgba(255, 20, 147, 0.5),
+                0 0 40px rgba(0, 255, 255, 0.3),
+                inset 0 0 15px rgba(255, 255, 255, 0.1);
+            text-align: center;
+            width: 100%;
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            animation: cardAppear 2s ease-out forwards;
+            position: relative;
+            overflow: hidden;
+            margin: 20px 0; /* Espacement supplémentaire */
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff00de, #00ffea, #ff00de, #00ffea);
+            z-index: -1;
+            filter: blur(8px); /* Réduit de 10px */
+            opacity: 0.7;
+            animation: borderGlow 4s linear infinite;
+        }
+
+        @keyframes cardAppear {
+            0% { 
+                opacity: 0; 
+                transform: translateY(30px) scale(0.95); /* Réduit le déplacement */
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Style du "Joyeux Anniversaire" - TAILLE REDUITE */
+        h1 {
+            color: #fff;
+            font-size: 3rem; /* Réduit de 4rem */
+            margin-bottom: 5px; /* Réduit de 10px */
+            font-family: 'Dancing Script', cursive;
+            text-shadow: 
+                0 0 8px #fff,
+                0 0 15px #ff00de,
+                0 0 30px #ff00de; /* Réduit les ombres */
+            animation: titleGlow 3s infinite alternate;
+            line-height: 1.2;
+        }
+
+        @keyframes titleGlow {
+            from { text-shadow: 0 0 8px #fff, 0 0 15px #ff00de, 0 0 30px #ff00de; }
+            to { text-shadow: 0 0 12px #fff, 0 0 25px #ff00de, 0 0 50px #ff00de; }
+        }
+
+        /* Style spécial pour QUEEN FATIMA - TAILLE REDUITE */
+        .queen-fatima {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem; /* Réduit de 5.5rem */
+            background: linear-gradient(45deg, #ff00de, #ff1493, #00ffff, #ff00de);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 300% 300%;
+            display: block;
+            margin: 15px 0; /* Réduit de 20px */
+            padding: 8px; /* Réduit de 10px */
+            text-shadow: 
+                0 3px 10px rgba(0, 0, 0, 0.5),
+                0 0 20px rgba(255, 20, 147, 0.7); /* Réduit les ombres */
+            position: relative;
+            animation: 
+                nameGlow 3s ease-in-out infinite alternate,
+                gradientMove 8s ease infinite;
+            letter-spacing: 1px; /* Réduit de 2px */
+            line-height: 1.1;
+        }
+
+        .queen-fatima::before {
+            content: 'QUEEN FATIMA';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            z-index: -1;
+            background: linear-gradient(45deg, #000, #333, #000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: blur(2px); /* Réduit de 3px */
+        }
+
+        .queen-fatima::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.transparenttextures.com/patterns/diamond-upholstery.png');
+            opacity: 0.1;
+            z-index: -2;
+            border-radius: 8px; /* Réduit de 10px */
+        }
+
+        @keyframes nameGlow {
+            0% { 
+                filter: drop-shadow(0 0 4px #ff00de) drop-shadow(0 0 8px #ff1493);
+                transform: scale(1);
+            }
+            100% { 
+                filter: drop-shadow(0 0 12px #ff00de) drop-shadow(0 0 20px #ff1493) drop-shadow(0 0 30px #00ffff);
+                transform: scale(1.02); /* Réduit de 1.03 */
+            }
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Couronne au-dessus du nom - TAILLE REDUITE */
+        .crown {
+            font-size: 3rem; /* Réduit de 4rem */
+            color: gold;
+            display: block;
+            margin-bottom: -15px; /* Ajusté */
+            animation: crownSpin 4s linear infinite;
+            text-shadow: 
+                0 0 8px gold,
+                0 0 15px orange,
+                0 0 20px yellow; /* Réduit les ombres */
+        }
+
+        @keyframes crownSpin {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
+        }
+
+        /* Style du "Je t'aime" - TAILLE REDUITE */
+        .love-message {
+            font-size: 1.8rem; /* Réduit de 2.2rem */
+            color: #fff;
+            margin: 20px 0; /* Réduit de 30px */
+            padding: 15px; /* Réduit de 20px */
+            background: rgba(255, 20, 147, 0.2);
+            border-radius: 12px; /* Réduit de 15px */
+            border: 1px solid rgba(255, 20, 147, 0.5);
+            animation: lovePulse 2s infinite;
+        }
+
+        @keyframes lovePulse {
+            0%, 100% { box-shadow: 0 0 12px rgba(255, 20, 147, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(255, 20, 147, 0.8); }
+        }
+
+        .heart {
+            color: #ff3333;
+            display: inline-block;
+            margin: 0 8px; /* Réduit de 10px */
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); } /* Réduit de 1.3 */
+        }
+
+        /* Conteneur pour les messages romantiques - HAUTEUR REDUITE */
+        .message-container {
+            width: 100%;
+            height: 120px; /* Réduit de 150px */
+            position: relative;
+            margin-top: 15px; /* Réduit de 20px */
+            overflow: hidden;
+        }
+
+        .romantic-message {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px; /* Réduit de 25px */
+            background: rgba(0, 20, 40, 0.8);
+            border-radius: 12px; /* Réduit de 15px */
+            border: 1px solid rgba(0, 255, 255, 0.5);
+            color: #fff;
+            font-size: 1.3rem; /* Réduit de 1.5rem */
+            font-style: italic;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px); /* Réduit de 30px */
+            transition: all 1s ease;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3); /* Réduit de 20px */
+            line-height: 1.4;
+        }
+
+        .romantic-message.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .romantic-message i {
+            color: #ff00de;
+            margin: 0 8px; /* Réduit de 10px */
+        }
+
+        /* Texte sous les messages */
+        .sub-text {
+            color: #a0e7ff;
+            font-size: 1.1rem; /* Réduit de 1.3rem */
+            margin-bottom: 15px; /* Réduit de 20px */
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        /* Signature */
+        .signature {
+            margin-top: 30px; /* Réduit de 40px */
+            color: #fff;
+            font-size: 1rem; /* Réduit de 1.1rem */
+        }
+
+        .signature-name {
+            margin-top: 10px; /* Réduit de 15px */
+            color: #ff00de;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6rem; /* Réduit de 1.8rem */
+        }
+
+        .signature-date {
+            margin-top: 8px; /* Réduit de 10px */
+            font-size: 0.9rem; /* Réduit de 1rem */
+            color: #a0e7ff;
+        }
+
+        /* Fleurs décoratives - MOINS NOMBREUSES */
+        .flowers {
+            position: fixed; /* Changé à fixed */
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .flower {
+            position: absolute;
+            font-size: 1.5rem; /* Réduit de 2rem */
+            color: #ff00de;
+            opacity: 0.5; /* Réduit de 0.6 */
+            animation: float 8s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        /* Cœurs volants - MOINS NOMBREUX */
+        .floating-hearts {
+            position: fixed; /* Changé à fixed */
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 1.5rem; /* Réduit de 2rem */
+            color: #ff00de;
+            opacity: 0;
+            animation: floatHeart 15s infinite linear;
+        }
+
+        @keyframes floatHeart {
+            0% { 
+                transform: translateY(100vh) translateX(0) rotate(0deg); 
+                opacity: 0;
+            }
+            10% { opacity: 0.6; } /* Réduit de 0.7 */
+            90% { opacity: 0.6; } /* Réduit de 0.7 */
+            100% { 
+                transform: translateY(-100px) translateX(100px) rotate(360deg); 
+                opacity: 0;
+            }
+        }
+
+        /* Responsive - AJUSTÉ */
+        @media (max-width: 992px) {
+            h1 { font-size: 2.5rem; }
+            .queen-fatima { font-size: 3.2rem; }
+            .crown { font-size: 2.5rem; margin-bottom: -12px; }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                gap: 15px;
+            }
+            
+            .card {
+                padding: 30px 20px;
+                border-radius: 15px;
+            }
+            
+            h1 { font-size: 2.2rem; }
+            .queen-fatima { 
+                font-size: 2.8rem; 
+                margin: 10px 0;
+            }
+            .crown { 
+                font-size: 2.2rem; 
+                margin-bottom: -10px; 
+            }
+            .love-message { 
+                font-size: 1.6rem; 
+                margin: 15px 0;
+                padding: 12px;
+            }
+            .romantic-message { 
+                font-size: 1.1rem; 
+                padding: 15px;
+            }
+            .message-container {
+                height: 100px;
+            }
+            .sub-text { font-size: 1rem; }
+        }
+
+        @media (max-width: 576px) {
+            h1 { font-size: 2rem; }
+            .queen-fatima { 
+                font-size: 2.4rem; 
+                letter-spacing: 0.5px;
+            }
+            .crown { 
+                font-size: 1.8rem; 
+                margin-bottom: -8px; 
+            }
+            .love-message { 
+                font-size: 1.4rem; 
+                margin: 12px 0;
+            }
+            .romantic-message { 
+                font-size: 1rem; 
+                padding: 12px;
+            }
+            .message-container {
+                height: 90px;
+            }
+            .queen-fatima::before {
+                top: 1px;
+                left: 1px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            .queen-fatima { 
+                font-size: 2rem; 
+                padding: 5px;
+            }
+            .crown { 
+                font-size: 1.5rem; 
+                margin-bottom: -5px; 
+            }
+            .love-message { 
+                font-size: 1.2rem; 
+                padding: 10px;
+            }
+            .card {
+                padding: 25px 15px;
+            }
+        }
+
+        @media (max-height: 700px) {
+            /* Ajustements pour les écrans plus courts */
+            .container {
+                padding: 10px 0;
+            }
+            
+            .card {
+                padding: 25px 20px;
+                margin: 10px 0;
+            }
+            
+            h1 { font-size: 2.2rem; }
+            .queen-fatima { font-size: 2.8rem; }
+            .message-container {
+                height: 90px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrixCanvas"></canvas>
+    
+    <div class="flowers" id="flowersContainer"></div>
+    <div class="floating-hearts" id="heartsContainer"></div>
+    
+    <div class="container">
+        <div class="card">
+            <h1>Joyeux Anniversaire</h1>
+            
+            <div class="crown">👑</div>
+            
+            <div class="queen-fatima">
+                QUEEN FATIMA
+            </div>
+            
+            <div class="love-message">
+                Ma Reine, mon amour pour toi est infini <i class="fas fa-heart heart"></i>
+            </div>
+            
+            <p class="sub-text">
+                En ce jour spécial, je célèbre la plus merveilleuse personne de ma vie
+            </p>
+            
+            <div class="message-container">
+                <div class="romantic-message active" id="message1">
+                    <i class="fas fa-crown"></i> Tu règnes sur mon cœur comme une véritable reine <i class="fas fa-crown"></i>
+                </div>
+                <div class="romantic-message" id="message2">
+                    <i class="fas fa-star"></i> Fatima, ton nom résonne dans mon cœur comme une douce mélodie <i class="fas fa-star"></i>
+                </div>
+                <div class="romantic-message" id="message3">
+                    <i class="fas fa-heart"></i> Chaque instant avec toi est un trésor que je chéris <i class="fas fa-heart"></i>
+                </div>
+                <div class="romantic-message" id="message4">
+                    <i class="fas fa-gem"></i> Tu es la perle rare, la reine de mon univers <i class="fas fa-gem"></i>
+                </div>
+                <div class="romantic-message" id="message5">
+                    <i class="fas fa-moon"></i> Mon amour pour toi brille plus fort que toutes les étoiles <i class="fas fa-moon"></i>
+                </div>
+                <div class="romantic-message" id="message6">
+                    <i class="fas fa-sun"></i> Ta présence illumine ma vie comme un soleil éternel <i class="fas fa-sun"></i>
+                </div>
+            </div>
+            
+            <div class="signature">
+                <p>À la femme la plus extraordinaire que je connaisse,</p>
+                <p class="signature-name">
+                    Ton chevalier dévoué pour l'éternité
+                </p>
+                <p class="signature-date">
+                    En ce jour de ton anniversaire et pour toujours
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- LOGIQUE MATRIX AMÉLIORÉE ---
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Mettre le canvas en plein écran
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Les caractères qui vont tomber
+        const katakana = '123456789アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        const nums = '0123456789';
+        const alphabet = katakana + latin + nums;
+
+        const fontSize = 16; /* Réduit de 18px */
+        const columns = canvas.width / fontSize;
+
+        // Tableau pour stocker la position Y de chaque colonne
+        const drops = [];
+        for(let x = 0; x < columns; x++) {
+            drops[x] = Math.random() * canvas.height;
+        }
+
+        // Couleurs pour l'effet Matrix
+        const colors = ['#0F0', '#0FA', '#0FF', '#AF0', '#F0F'];
+        
+        // Fonction de dessin
+        function drawMatrix() {
+            // Fond noir avec opacité pour créer l'effet de traînée
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Boucle sur chaque goutte
+            for(let i = 0; i < drops.length; i++) {
+                // Choisir un caractère au hasard
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                
+                // Choisir une couleur au hasard
+                ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+                ctx.font = `${fontSize}px monospace`;
+                
+                // Dessiner le caractère
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                // Envoyer la goutte vers le bas ou la remettre en haut de manière aléatoire
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+
+                // Incrémenter la position Y
+                drops[i] += 0.7 + Math.random() * 0.4; /* Réduit la vitesse */
+            }
+        }
+
+        // Lancer l'animation Matrix
+        setInterval(drawMatrix, 45); /* Ralenti de 40ms */
+
+        // Gérer le redimensionnement de la fenêtre
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // --- LOGIQUE DES MESSAGES ROMANTIQUES ---
+        const messages = document.querySelectorAll('.romantic-message');
+        let currentMessageIndex = 0;
+        
+        // Fonction pour afficher les messages
+        function showNextMessage() {
+            // Masquer tous les messages
+            messages.forEach(msg => {
+                msg.classList.remove('active');
+            });
+            
+            // Afficher le message suivant
+            messages[currentMessageIndex].classList.add('active');
+            
+            // Incrémenter l'index pour le prochain message
+            currentMessageIndex = (currentMessageIndex + 1) % messages.length;
+        }
+        
+        // Changer de message toutes les 5 secondes
+        setInterval(showNextMessage, 5000);
+        
+        // Démarrer avec le premier message
+        setTimeout(showNextMessage, 1000);
+        
+        // --- CRÉATION DES FLEURS DÉCORATIVES - MOINS NOMBREUSES ---
+        const flowersContainer = document.getElementById('flowersContainer');
+        const flowerIcons = ['❀', '✿', '❁', '🌸', '💮', '🏵️', '🌺', '🌻', '🌼'];
+        
+        function createFlowers() {
+            for (let i = 0; i < 12; i++) { /* Réduit de 20 à 12 */
+                const flower = document.createElement('div');
+                flower.classList.add('flower');
+                flower.innerHTML = flowerIcons[Math.floor(Math.random() * flowerIcons.length)];
+                
+                // Position aléatoire
+                flower.style.left = `${Math.random() * 100}%`;
+                flower.style.fontSize = `${Math.random() * 1 + 1}rem`; /* Réduit la taille */
+                flower.style.animationDuration = `${Math.random() * 10 + 15}s`;
+                flower.style.animationDelay = `${Math.random() * 5}s`;
+                flower.style.color = `hsl(${Math.random() * 60 + 300}, 100%, 70%)`;
+                
+                flowersContainer.appendChild(flower);
+            }
+        }
+        
+        createFlowers();
+        
+        // --- CRÉATION DE CŒURS VOLANTS - MOINS NOMBREUX ---
+        const heartsContainer = document.getElementById('heartsContainer');
+        const heartIcons = ['❤️', '🧡', '💛', '💚', '💙', '💜', '🤎', '🖤', '🤍', '💖', '💗', '💓', '💞', '💕'];
+        
+        function createFloatingHearts() {
+            for (let i = 0; i < 15; i++) { /* Réduit de 25 à 15 */
+                const heart = document.createElement('div');
+                heart.classList.add('floating-heart');
+                heart.innerHTML = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+                
+                // Position et style aléatoire
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.fontSize = `${Math.random() * 1 + 1}rem`; /* Réduit la taille */
+                heart.style.animationDuration = `${Math.random() * 10 + 20}s`;
+                heart.style.animationDelay = `${Math.random() * 15}s`;
+                heart.style.color = `hsl(${Math.random() * 360}, 100%, 70%)`;
+                
+                heartsContainer.appendChild(heart);
+            }
+        }
+        
+        createFloatingHearts();
+        
+        // --- EFFET DE NEIGE ROMANTIQUE - MOINS NOMBREUSE ---
+        function createRomanticSnow() {
+            const snowContainer = document.createElement('div');
+            snowContainer.style.position = 'fixed';
+            snowContainer.style.top = '0';
+            snowContainer.style.left = '0';
+            snowContainer.style.width = '100%';
+            snowContainer.style.height = '100%';
+            snowContainer.style.pointerEvents = 'none';
+            snowContainer.style.zIndex = '1';
+            document.body.appendChild(snowContainer);
+            
+            const snowflakes = ['❄', '✽', '✾', '✿', '❀', '♡', '♥', '★', '☆', '👑', '💎'];
+            
+            for (let i = 0; i < 40; i++) { /* Réduit de 60 à 40 */
+                const snowflake = document.createElement('div');
+                snowflake.innerHTML = snowflakes[Math.floor(Math.random() * snowflakes.length)];
+                snowflake.style.position = 'absolute';
+                snowflake.style.color = `rgba(255, ${Math.random() * 155 + 100}, ${Math.random() * 155 + 100}, 0.7)`; /* Réduit l'opacité */
+                snowflake.style.fontSize = `${Math.random() * 15 + 10}px`; /* Réduit la taille */
+                snowflake.style.top = '-50px';
+                snowflake.style.left = `${Math.random() * 100}%`;
+                snowflake.style.animation = `snowFall ${Math.random() * 10 + 10}s linear infinite`;
+                snowflake.style.animationDelay = `${Math.random() * 10}s`;
+                snowflake.appendChild(snowflake);
+            }
+            
+            // Ajouter l'animation de chute de neige
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes snowFall {
+                    0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+                    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        createRomanticSnow();
+        
+        // --- EFFET DE CONFETTI AU CHARGEMENT - MOINS NOMBREUX ---
+        function launchConfetti() {
+            const confettiContainer = document.createElement('div');
+            confettiContainer.style.position = 'fixed';
+            confettiContainer.style.top = '0';
+            confettiContainer.style.left = '0';
+            confettiContainer.style.width = '100%';
+            confettiContainer.style.height = '100%';
+            confettiContainer.style.pointerEvents = 'none';
+            confettiContainer.style.zIndex = '3';
+            document.body.appendChild(confettiContainer);
+            
+            const confettiColors = ['#ff00de', '#00ffea', '#ffff00', '#ff3333', '#00ff00', '#ff9900'];
+            const confettiShapes = ['👑', '❤️', '♡', '✦', '✧', '❈', '❉', '✯', '✰', '💎', '🌟'];
+            
+            for (let i = 0; i < 120; i++) { /* Réduit de 200 à 120 */
+                const confetti = document.createElement('div');
+                confetti.innerHTML = confettiShapes[Math.floor(Math.random() * confettiShapes.length)];
+                confetti.style.position = 'absolute';
+                confetti.style.color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+                confetti.style.fontSize = `${Math.random() * 15 + 10}px`; /* Réduit la taille */
+                confetti.style.top = '-50px';
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.animation = `confettiFall ${Math.random() * 3 + 2}s ease-in forwards`;
+                confetti.style.animationDelay = `${Math.random() * 1}s`;
+                confettiContainer.appendChild(confetti);
+            }
+            
+            // Ajouter l'animation de confetti
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes confettiFall {
+                    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+                    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Supprimer le conteneur après l'animation
+            setTimeout(() => {
+                if (confettiContainer.parentNode) {
+                    document.body.removeChild(confettiContainer);
+                }
+            }, 5000);
+        }
+        
+        // Lancer les confettis après un court délai
+        setTimeout(launchConfetti, 1000);
+        
+        // --- ANIMATION SPÉCIALE POUR LE NOM ---
+        function animateName() {
+            const nameElement = document.querySelector('.queen-fatima');
+            
+            // Animation de pulsation supplémentaire
+            setInterval(() => {
+                nameElement.style.transform = `scale(${1 + Math.random() * 0.03})`; /* Réduit l'effet */
+            }, 2000);
+            
+            // Effet d'étincelles aléatoires - MOINS FRÉQUENT
+            setInterval(() => {
+                createSparkle(nameElement.getBoundingClientRect());
+            }, 1500); /* Augmenté de 800ms à 1500ms */
+        }
+        
+        function createSparkle(rect) {
+            const sparkle = document.createElement('div');
+            sparkle.innerHTML = '✨';
+            sparkle.style.position = 'fixed';
+            sparkle.style.left = `${rect.left + Math.random() * rect.width}px`;
+            sparkle.style.top = `${rect.top + Math.random() * rect.height}px`;
+            sparkle.style.fontSize = `${Math.random() * 15 + 10}px`; /* Réduit la taille */
+            sparkle.style.zIndex = '10';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.animation = `sparkleFade 1s ease-out forwards`;
+            
+            // Ajouter l'animation d'étincelle
+            const style = document.createElement('style');
+            if (!document.querySelector('#sparkleStyle')) {
+                style.id = 'sparkleStyle';
+                style.innerHTML = `
+                    @keyframes sparkleFade {
+                        0% { opacity: 1; transform: scale(0.5); }
+                        100% { opacity: 0; transform: scale(1.2); } /* Réduit de 1.5 */
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            document.body.appendChild(sparkle);
+            
+            // Supprimer l'étincelle après l'animation
+            setTimeout(() => {
+                if (sparkle.parentNode) {
+                    document.body.removeChild(sparkle);
+                }
+            }, 1000);
+        }
+        
+        // Démarrer l'animation du nom
+        setTimeout(animateName, 2000);
+        
+        // Message de console romantique
+        console.log("%c👑 JOYEUX ANNIVERSAIRE QUEEN FATIMA! 👑", "color: #ff00de; font-size: 20px; font-weight: bold; text-shadow: 0 0 8px #ff00de;");
+        console.log("%cTu es la reine de mon cœur, la lumière de ma vie.", "color: #00ffea; font-size: 14px;");
+        console.log("%cQue cette journée soit aussi merveilleuse que toi, ma chère Fatima.", "color: #ff1493; font-size: 12px; font-style: italic;");
+        
+        // Effet de clic pour créer des cœurs - TAILLE RÉDUITE
+        document.addEventListener('click', function(e) {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.left = `${e.clientX}px`;
+            heart.style.top = `${e.clientY}px`;
+            heart.style.fontSize = '1.5rem'; /* Réduit de 2rem */
+            heart.style.zIndex = '100';
+            heart.style.pointerEvents = 'none';
+            heart.style.transform = 'translate(-50%, -50%)';
+            heart.style.animation = 'clickHeart 1.5s ease-out forwards';
+            
+            // Ajouter l'animation de cœur au clic
+            const style = document.createElement('style');
+            if (!document.querySelector('#clickHeartStyle')) {
+                style.id = 'clickHeartStyle';
+                style.innerHTML = `
+                    @keyframes clickHeart {
+                        0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                        100% { opacity: 0; transform: translate(-50%, -120px) scale(1.2); } /* Réduit de 150px et 1.5 */
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            document.body.appendChild(heart);
+            
+            // Supprimer le cœur après l'animation
+            setTimeout(() => {
+                if (heart.parentNode) {
+                    document.body.removeChild(heart);
+                }
+            }, 1500);
+        });
+        
+        // Ajuster automatiquement la taille pour s'adapter à l'écran
+        function adjustLayout() {
+            const card = document.querySelector('.card');
+            const container = document.querySelector('.container');
+            const windowHeight = window.innerHeight;
+            const cardHeight = card.offsetHeight;
+            
+            // Si la carte est trop grande pour la fenêtre, ajouter du scroll
+            if (cardHeight > windowHeight * 0.9) {
+                container.style.padding = '10px 0';
+                card.style.margin = '10px 0';
+            } else {
+                // Centrer verticalement
+                container.style.padding = `${Math.max(20, (windowHeight - cardHeight) / 3)}px 0`;
+            }
+        }
+        
+        // Ajuster au chargement et au redimensionnement
+        window.addEventListener('load', adjustLayout);
+        window.addEventListener('resize', adjustLayout);
+        setTimeout(adjustLayout, 500); // Ajuster après l'animation
+    </script>
+</body>
+</html>
